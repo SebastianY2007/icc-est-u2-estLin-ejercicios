@@ -15,7 +15,20 @@ public class LogicaClasificacion {
      *         Salida: "odnuM aloH"
      */
     public String invertirCadena(String texto) {
-        return "";
+        Stack<Character> pilaInvertida = new Stack<>();
+
+        for(int i = 0; i < texto.length(); i++){
+            char letra = texto.charAt(i);
+            pilaInvertida.push(letra);
+        }
+
+        StringBuilder resultado = new StringBuilder();
+        
+        while(!pilaInvertida.isEmpty()){
+            resultado.append(pilaInvertida.pop());
+        }
+
+        return resultado.toString();
     }
 
     /**
@@ -30,7 +43,22 @@ public class LogicaClasificacion {
      *         Salida: true
      */
     public boolean validarSimbolos(String expresion) {
-        return false;
+        Stack<Character> pila = new Stack<>();
+
+        for (char c : expresion.toCharArray()) {
+            switch (c) {
+                case '(': pila.push(')'); 
+                break;
+                case '[': pila.push(']'); 
+                break;
+                case '{': pila.push('}'); 
+                break;
+                default:
+                    if (pila.isEmpty() || pila.pop() != c) return false;
+            }
+        }
+
+        return pila.isEmpty();
     }
 
     /**
@@ -43,8 +71,19 @@ public class LogicaClasificacion {
      *         Salida: [1, 2, 3, 4]
      */
     public List<Integer> ordenarPila(Stack<Integer> pila) {
+        Stack<Integer> auxiliar = new Stack<>();
+        while (!pila.isEmpty()) {
+            int temp = pila.pop();
+            while (!auxiliar.isEmpty() && auxiliar.peek() < temp) {
+                pila.push(auxiliar.pop());
+            }
+            auxiliar.push(temp);
+        }
 
-        return new ArrayList<>();
+        while (!auxiliar.isEmpty()){
+            pila.push(auxiliar.pop());
+        }
+        return new ArrayList<>(pila);
     }
 
     /**
@@ -58,7 +97,21 @@ public class LogicaClasificacion {
      *         Salida: [2, 4, 6, 1, 3, 5]
      */
     public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
+        LinkedList<Integer> pares = new LinkedList<>();
+        LinkedList<Integer> impares = new LinkedList<>();
+        
+        for (Integer numero : original) {
+            if (numero % 2 == 0) { 
+                pares.add(numero);
+            } else { 
+                impares.add(numero);
+            }
+        }
+        List<Integer> resultado = new ArrayList<>();
 
-        return new ArrayList<>();
+        resultado.addAll(pares);
+        resultado.addAll(impares);
+
+        return resultado;
     }
 }
