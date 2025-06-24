@@ -87,14 +87,14 @@ public class LogicaClasificacion {
     }
 
     /**
-     * Clasifica una lista de enteros separando pares e impares.
-     * Usa LinkedList para mantener el orden de inserción.
-     *
+     * Clasifica una lista de enteros separando pares e impares.        
+     * Usa LinkedList para mantener el orden de inserción.        
+     *a         
      * @return Lista con pares primero, luego impares.
      *
      *         Ejemplo:
-     *         Entrada: [1, 2, 3, 4, 5, 6]
-     *         Salida: [2, 4, 6, 1, 3, 5]
+     *         Entrada: [1, 2, 3, 4, 5, 6]   
+     *         Salida: [2, 4, 6, 1, 3, 5]    
      */
     public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
         LinkedList<Integer> pares = new LinkedList<>();
